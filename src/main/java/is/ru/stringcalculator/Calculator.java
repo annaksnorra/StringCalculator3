@@ -1,5 +1,5 @@
 package is.ru.stringcalculator;
-import java.util.Arrays;
+import java.util.regex.Pattern;
 
 public class Calculator {
 
@@ -44,7 +44,7 @@ public class Calculator {
 
     private static String[] splitCustomDelimeter(String numbers) {
     	String[] array = newLine(numbers);
-    	String delimeter = array[0].substring(2);
+    	String delimeter = array[0].contains("[") ? Pattern.quote(array[0].substring(3,array[0].length()-1)): array[0].substring(2);
     		return array[1].split(delimeter);
     }
 
