@@ -1,8 +1,9 @@
 package is.ru.stringcalculator;
+import java.util.Arrays;
 
 public class Calculator {
 
-	public static int add(String text){
+	public static int add(String text) {
 		
 		if(text.equals("")){
 			return 0;
@@ -47,11 +48,24 @@ public class Calculator {
     		return array[1].split(delimeter);
     }
 
-    private static int sum(String[] numbers){
+    private static int sum(String[] numbers) {
  	    int total = 0;
+ 	    String errormsg = "Negatives not allowed: ";
+ 	    boolean isError = false;
+
         for(String number : numbers){
-		    total += toInt(number);
+        	if(number.contains("-")) {
+        		errormsg += number + ",";
+        		isError = true;
+        	}
+        	else {
+		    	total += toInt(number);
+		    }
 		}
+
+		if(isError)
+			throw new IllegalArgumentException(errormsg);
+
 		return total;
     }
 
