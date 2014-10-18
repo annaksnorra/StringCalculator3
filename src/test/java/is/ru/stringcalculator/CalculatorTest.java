@@ -76,7 +76,12 @@ public class CalculatorTest {
 
     @Test
     public void testAllowMultipleDelimeters(){
-    	assertEquals(6, Calculator.add("//[*][%]\n*12%3"));
+    	assertEquals(6, Calculator.add("//[*][%]\n1*2%3"));
+    }
+
+    @Test
+    public void testAllowMultipleDelimersOfAnyLength(){
+    	assertEquals(6, Calculator.add("//[***][%%]\n1***2%%3"));
     }
 
 }
