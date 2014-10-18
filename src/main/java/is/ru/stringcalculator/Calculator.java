@@ -43,8 +43,19 @@ public class Calculator {
     }
 
     private static String[] splitCustomDelimeter(String numbers) {
-    	String[] array = newLine(numbers);
-    	String delimeter = array[0].contains("[") ? Pattern.quote(array[0].substring(3,array[0].length()-1)): array[0].substring(2);
+       	String[] array = newLine(numbers);
+        array[0] = array[0].replace("//","");
+        array[0] = array[0].replace("[","");
+        String[] delimeters = array[0].split("]");
+
+        String delimeter = "";
+        for(String d : delimeters)
+        {
+            d = Pattern.quote(d);
+            delimeter += d + "|";
+        }
+
+        String[] test = array[1].split(delimeter);
     		return array[1].split(delimeter);
     }
 
@@ -59,9 +70,12 @@ public class Calculator {
         		isError = true;
         	}
         	else {
-		    	int n = toInt(number);
-		    	if(n <= 1000)
-		    		total += n;
+		    	if(!number.isEmpty())
+                {
+                    int n = toInt(number);
+                    if (n <= 1000)
+                        total += n;
+                }
 		    }
 		}
 
