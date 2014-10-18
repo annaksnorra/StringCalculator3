@@ -59,7 +59,9 @@ public class Calculator {
         		isError = true;
         	}
         	else {
-		    	total += toInt(number);
+		    	int n = toInt(number);
+		    	if(n <= 1000)
+		    		total += n;
 		    }
 		}
 
